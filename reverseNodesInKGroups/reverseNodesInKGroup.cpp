@@ -23,14 +23,20 @@ public:
             temp = temp->next;
         }
 
-        if (numNodes < k || k == 1) {
+        // Check if we can reverse any part or need to reverse any.
+        if (numNodes < k || k < 2) {
             return head;
         }
 
-        for(int i = 0; i < (numNodes/k); i++) { // floor of numNodes
+        // For each section...
+        for(int i = 0; i < (numNodes/k); i++) { // floor of numNodes/k
             if ( i == 0 ) {
+                // For the first section, reverse the section and set the
+                // new starting point as the previous end.
                 newStart = swapSection(head, k);
             } else {
+                // Get the k*i'th node and set it to the new start of the
+                // next section
                 ListNode* kthNode = getKthNode(newStart, k*i);
                 kthNode->next = swapSection(kthNode->next, k);
             }
@@ -42,16 +48,28 @@ public:
     ListNode* swapSection(ListNode* start, int k) {
         // Get the k'th node
         ListNode* newStart = getKthNode(start,k);
+        // Save the original end's next nodes.
         ListNode* endNext = newStart->next;
 
-        for (int i = k; i > 1; i--) {
-            getKthNode(start,i)->next = getKthNode(start,i-1);
+        // o -- o -- o
+        // c -- n -- t, where c = current, n = next, t = temp.
+        ListNode* current = start;
+        ListNode* next = current->next;
+        ListNode* temp = next->next;
+        // Start reversing the pointers. O(k)
+        for (int i = 0; i < k - 1; i++) {
+            next->next = current;
+            current = next;
+            next = temp;
+            if (temp != NULL)
+                temp = temp->next;
         }
         start->next = endNext;
 
         return newStart;
     }
 
+    // O(k)
     ListNode* getKthNode(ListNode* start, int k) {
         for ( int i = 0; i < k-1; i++) {
             start = start->next;
