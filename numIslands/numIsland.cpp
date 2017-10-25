@@ -1,5 +1,7 @@
 /* 
  *   https://leetcode.com/problems/number-of-islands/description/
+ *   Runtime of solution is O(n*m) where n is the width 
+ *   of the 2D array and m is the length of the 2D array.
 */
 
 class Solution {
