@@ -2,6 +2,8 @@
  *   https://leetcode.com/problems/number-of-islands/description/
  *   Runtime of solution is O(n*m) where n is the width 
  *   of the 2D array and m is the length of the 2D array.
+ *   This algorithm also has a O(n*m) space complexity due to 
+ *   recursion on a single "full" island.
 */
 
 class Solution {
