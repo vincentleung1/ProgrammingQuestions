@@ -9,7 +9,8 @@
  * };
  *
  *  Runtime of solution: O(n*lg(n)), where n is the number of nodes.
- *
+ *  It runs n for the number of nodes, and for each node, there is a lg(n) 
+ *  lookup time in the hash table for insertions.
  */
  class Solution {
 public:
