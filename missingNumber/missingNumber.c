@@ -1,12 +1,12 @@
 /**
 * https://leetcode.com/problems/missing-number/#/description
+*
+* Runs in O(n) time and O(1) space
 */
 
 
 int missingNumber(int* nums, int numsSize) {
     int i;
-
-    // sort the array in O(n) time and O(1) space
     for ( i = 0; i < numsSize; i++) {
         while (*nums >= 0 && *(nums+i) < numsSize && *(nums+i) != *(nums+*(nums+i))){
             int temp = *(nums+i);
